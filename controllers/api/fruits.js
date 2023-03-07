@@ -1,5 +1,3 @@
-/** @format */
-
 const Fruit = require("../../models/fruits");
 
 const dataController = {
