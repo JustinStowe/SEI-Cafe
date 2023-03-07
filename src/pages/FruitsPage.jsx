@@ -1,17 +1,13 @@
 /** @format */
 
-// FruitPage.js
-/*
-Create
-Read (Index & Show)
-Update
-Destroy
-*/
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
-export default function FruitsPage(props) {
+export default function FruitsPage() {
+  // Fruits data
   const [fruits, setFruits] = useState([]);
+
   const [foundFruit, setFoundFruit] = useState(null);
+  // Form for a new fruit
   const [newFruit, setNewFruit] = useState({
     name: "",
     readyToEat: false,
@@ -61,6 +57,8 @@ export default function FruitsPage(props) {
   // create
   const createFruit = async () => {
     try {
+      console.log(JSON.stringify({ ...newFruit }));
+
       const response = await fetch(`/api/fruits`, {
         method: "POST",
         headers: {
@@ -124,9 +122,9 @@ export default function FruitsPage(props) {
       <input
         type="checkbox"
         checked={newFruit.readyToEat}
-        onChange={(evt) =>
-          setNewFruit({ ...newFruit, readyToEat: evt.target.checked })
-        }
+        onChange={(evt) => {
+          setNewFruit({ ...newFruit, readyToEat: evt.target.checked });
+        }}
       ></input>
       <br />
       <button onClick={() => createFruit()}>Create A New Fruit</button>

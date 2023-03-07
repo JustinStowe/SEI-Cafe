@@ -1,36 +1,23 @@
 /** @format */
 
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+
 import { Routes, Route } from "react-router-dom";
-//pages
+
+// Pages
 import NewOrderPage from "./pages/NewOrderPage";
-import AuthPage from "./pages/AuthPage";
-import FruitsPage from "./pages/FruitsPage/FruitsPage";
 import OrderHistoryPage from "./pages/OrderHistoryPage";
-//Components
+import AuthPage from "./pages/AuthPage";
+// Components
 import NavBar from "./components/NavBar";
+import FruitsPage from "./pages/FruitsPage";
 
 function App() {
-  const [state, setState] = useState(null);
-  const [user, setUser] = useState(null);
-
-  const fetchState = async () => {
-    try {
-      const response = await fetch("/api/test");
-      const data = await response.json();
-      setState(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchState();
-  }, []);
+  const [user, setUser] = useState({});
 
   return (
-    <div className="App">
+    <main className="App">
       {user ? (
         <>
           <NavBar />
@@ -43,7 +30,7 @@ function App() {
       ) : (
         <AuthPage />
       )}
-    </div>
+    </main>
   );
 }
 

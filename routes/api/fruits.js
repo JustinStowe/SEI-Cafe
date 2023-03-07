@@ -7,6 +7,11 @@ const {
   apiController,
 } = require("../../controllers/api/fruits");
 
+router.use((req, res, next) => {
+  res.locals.data = {};
+  next();
+});
+
 // add routes
 // Index /api/fruits
 router.get("/", dataController.index, apiController.index);

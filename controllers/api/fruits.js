@@ -6,6 +6,7 @@ const dataController = {
   // Index,
   index(req, res, next) {
     Fruit.find({}, (err, foundFruits) => {
+      console.log({ foundFruits });
       if (err) {
         res.status(400).send({
           msg: err.message,
@@ -31,7 +32,6 @@ const dataController = {
   },
   // Update
   update(req, res, next) {
-    req.body.readyToEat = req.body.readyToEat === "on";
     Fruit.findByIdAndUpdate(
       req.params.id,
       req.body,
@@ -50,8 +50,6 @@ const dataController = {
   },
   // Create
   create(req, res, next) {
-    req.body.readyToEat = req.body.readyToEat === "on";
-
     Fruit.create(req.body, (err, createdFruit) => {
       if (err) {
         res.status(400).send({
