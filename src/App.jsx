@@ -1,18 +1,19 @@
-import "./App.css";
+/** @format */
+
 import React, { useState } from "react";
 
 import { Routes, Route } from "react-router-dom";
 
 // Pages
-import NewOrderPage from "./pages/NewOrderPage";
-import OrderHistoryPage from "./pages/OrderHistoryPage";
-import AuthPage from "./pages/AuthPage";
+import NewOrderPage from "./pages/newOrderPage/NewOrderPage";
+import OrderHistoryPage from "./pages/OrderHistoryPage/OrderHistoryPage";
+import AuthPage from "./pages/AuthPage/AuthPage";
+import FruitsPage from "./pages/FruitsPage/FruitsPage";
 // Components
-import NavBar from "./components/NavBar";
-import FruitsPage from "./pages/FruitsPage";
+import NavBar from "./components/navBar/NavBar";
 
 function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState();
 
   return (
     <main className="App">
@@ -26,7 +27,7 @@ function App() {
           </Routes>
         </>
       ) : (
-        <AuthPage />
+        <AuthPage setUser={setUser} />
       )}
     </main>
   );

@@ -1,14 +1,11 @@
+/** @format */
+
 const express = require("express");
 const router = express.Router();
 const {
   dataController,
   apiController,
 } = require("../../controllers/api/fruits");
-
-router.use((req, res, next) => {
-  res.locals.data = {};
-  next();
-});
 
 // add routes
 // Index /api/fruits
