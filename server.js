@@ -31,15 +31,25 @@ app.use((req, res, next) => {
   next();
 });
 
-// Routes
-app.use("/api/fruits", require("./routes/api/fruits"));
+/*
+ * Routes
+ */
 
-// Put API routes here, before the "catch all" route
+/*
+ *Put API routes here, before the "catch all" route
+ */
 app.use("/api/users", require("./routes/api/users"));
-app.use("/api/fruits", require("./routes/api/fruits"));
+// app.use("/api/fruits", require("./routes/api/fruits"));
 
-// The following "catch all" route (note the *) is necessary
-// to return the index.html on all non-AJAX requests
+/*
+ * Protect the API routes below from anonymous users
+ */
+const ensureLoggedIn = require("./config/ensureLoggedIn");
+app.use("/api/items", ensureLoggedIn, require("./routes/api/items"));
+app.use("/api/orders", ensureLoggedIn, require("./routes/api/orders"));
+/*
+ *The following "catch all" route (note the *) is necessary to return the index.html on all non-ajax requests
+ */
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });

@@ -1,7 +1,5 @@
-/** @format */
-
 import { useState } from "react";
-import * as userService from "../../utilities/users-service";
+import * as usersService from "../../utilities/users-service";
 
 export default function LoginForm({ setUser }) {
   const [credentials, setCredentials] = useState({
@@ -10,20 +8,24 @@ export default function LoginForm({ setUser }) {
   });
   const [error, setError] = useState("");
 
-  const handleChange = (evt) => {
+  function handleChange(evt) {
     setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
     setError("");
-  };
+  }
 
-  const handleSubmit = async (evt) => {
+  async function handleSubmit(evt) {
+    // Prevent form from being submitted to the server
     evt.preventDefault();
     try {
-      const user = await userService.login(credentials);
+      // The promise returned by the signUp service method
+      // will resolve to the user object included in the
+      // payload of the JSON Web Token (JWT)
+      const user = await usersService.login(credentials);
       setUser(user);
-    } catch (error) {
-      setError(error.message);
+    } catch {
+      setError("Log In Failed - Try Again");
     }
-  };
+  }
 
   return (
     <div>
@@ -31,7 +33,7 @@ export default function LoginForm({ setUser }) {
         <form autoComplete="off" onSubmit={handleSubmit}>
           <label>Email</label>
           <input
-            type="email"
+            type="text"
             name="email"
             value={credentials.email}
             onChange={handleChange}
@@ -48,7 +50,7 @@ export default function LoginForm({ setUser }) {
           <button type="submit">LOG IN</button>
         </form>
       </div>
-      <h1 className="error-message">&nbsp;{error}</h1>
+      <p className="error-message">&nbsp;{error}</p>
     </div>
   );
 }

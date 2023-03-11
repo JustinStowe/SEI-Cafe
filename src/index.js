@@ -3,7 +3,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
+import App from "./pages/app/App";
 import reportWebVitals from "./reportWebVitals";
 // Import the top-level BrowserRouter component
 import { BrowserRouter as Router } from "react-router-dom";
