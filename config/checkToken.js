@@ -1,5 +1,3 @@
-/** @format */
-
 // /config/checkToken.js
 const jwt = require("jsonwebtoken");
 
