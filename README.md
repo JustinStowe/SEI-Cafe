@@ -119,7 +119,7 @@
    ```
 4. Create .env file in root directory then paste your mongoURI
    ```js
-   const url = `https://www.omdbapi.com/?s=${searchTerm}&apikey=YOUR_API_KEY`;
+   MONGO_URI=`mongodb+srv://sei:<password>@sei.vjbt87k.mongodb.net/?retryWrites=true&w=majority`;
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
